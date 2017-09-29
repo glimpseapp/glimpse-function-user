@@ -39,10 +39,11 @@ app.get('/me', (req, res) => {
 
 app.post('/user', (req, res) => {
     var data = {
+        user_id: req.user.uid,
         name: req.body.name,
         email: req.user.email
     };
-    admin.database().ref(`users/${req.user.uid}`).set(data, function(error) {
+    admin.database().ref(`users/${req.user.uid}`).set(data, function (error) {
         if (error)
             res.send({error: error})
         else
